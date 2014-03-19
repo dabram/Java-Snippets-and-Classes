@@ -4,8 +4,6 @@ import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A specific Queue Class that behaves similarly to PriorityBlockingQueue.
@@ -29,7 +27,6 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
 	private final ReentrantLock takeLock = new ReentrantLock();
 	private final Condition notEmpty = takeLock.newCondition();
 	
-	transient private final Logger logger = Logger.getLogger(this.getClass().getName());
 	
 	/**
 	 * Constructs a fully qualified PriorityBlockingCapacityQueue
@@ -56,7 +53,8 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
         try {
 			putLock.lockInterruptibly();
 		} catch (InterruptedException e1) {
-			logger.log(Level.SEVERE, "Could not lock Interruptibly in PriorityBlockingCapacityQueue on ReentrantLock", e1);
+			//Here goes the Code for Logging or similar Behaviour
+			//e.g.: "Could not lock Interruptibly in PriorityBlockingCapacityQueue on ReentrantLock"
 		}
         try {
             /*
@@ -73,7 +71,8 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
                     notFull.await();
             } catch (InterruptedException ie) {
                 notFull.signal(); // propagate to a non-interrupted thread
-                logger.log(Level.SEVERE, "Could not wait! in Lockmechanism", ie);
+				//Here goes the Code for Logging or similar Behaviour
+                //e.g.: "Could not wait! in Lockmechanism"
             }
             super.offer(e);
             c = count.getAndIncrement();
@@ -109,7 +108,8 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
         try {
 			takeLock.lockInterruptibly();
 		} catch (InterruptedException e) {
-			logger.log(Level.FINE, "Could not lock Interruptibly in PriorityBlockingCapacityQueue on ReentrantLock", e);
+			//Here goes the Code for Logging or similar Behaviour
+			//e.g.: "Could not lock Interruptibly in PriorityBlockingCapacityQueue on ReentrantLock"
 		}
         try {
             try {
@@ -117,14 +117,16 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
                     notEmpty.await();
             } catch (InterruptedException ie) {
                 notEmpty.signal(); // propagate to a non-interrupted thread
-                logger.log(Level.FINE, "Could await Condition", ie);
+				//Here goes the Code for Logging or similar Behaviour
+				//e.g.: "Could await Condition"
 				
             }
 
             try {
 				x = super.take();
 			} catch (InterruptedException e) {
-				logger.log(Level.FINE, "Could not take Element from Queue",e);
+				//Here goes the Code for Logging or similar Behaviour
+				//e.g.: "Could not take Element from Queue"
 			}
             c = count.getAndDecrement();
             if (c > 1)
