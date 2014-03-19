@@ -1,5 +1,3 @@
-package dataStructures;
-
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
@@ -70,9 +68,9 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
                 while (count.get() == capacity)
                     notFull.await();
             } catch (InterruptedException ie) {
-                notFull.signal(); // propagate to a non-interrupted thread
-				//Here goes the Code for Logging or similar Behaviour
-                //e.g.: "Could not wait! in Lockmechanism"
+                	notFull.signal(); // propagate to a non-interrupted thread
+			//Here goes the Code for Logging or similar Behaviour
+                	//e.g.: "Could not wait! in Lockmechanism"
             }
             super.offer(e);
             c = count.getAndIncrement();
@@ -116,9 +114,9 @@ public class PriorityBlockingCapacityQueue<E> extends PriorityBlockingQueue<E>{
                 while (count.get() == 0)
                     notEmpty.await();
             } catch (InterruptedException ie) {
-                notEmpty.signal(); // propagate to a non-interrupted thread
-				//Here goes the Code for Logging or similar Behaviour
-				//e.g.: "Could await Condition"
+                	notEmpty.signal(); // propagate to a non-interrupted thread
+			//Here goes the Code for Logging or similar Behaviour
+			//e.g.: "Could await Condition"
 				
             }
 
