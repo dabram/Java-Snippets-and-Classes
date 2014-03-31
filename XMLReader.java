@@ -76,7 +76,7 @@ public class XMLReader implements Runnable{
 		website.setCurrentLocation(xml);
 		if( supervisor.getDatabase().xmlAlredyInDatabase(website.getCurrentLocation()) == false ){
 			readXML();
-			if(website.isCorrectXML()){//check the boolean
+			if(website.isCorrectXML()){
 				//Fill accordingly to your needs here
 				//All is okay at this point!
 				//The XML is now read and validated, you can discard it or anything else you wish
@@ -89,7 +89,7 @@ public class XMLReader implements Runnable{
 		}
 		else{
 			//Here goes the Code for Logging or similar Behaviour
-			//e.g. : logger.log(Level.INFO, "XML already in Database, pfad:" + website.getCurrentLocation());
+			//e.g. : logger.log(Level.INFO, "XML already in Database, path:" + website.getCurrentLocation());
 		}
 		
 	}
