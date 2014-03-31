@@ -79,6 +79,7 @@ public class XMLReader implements Runnable{
 			if(website.isCorrectXML()){//check the boolean
 				//Fill accordingly to your needs here
 				//All is okay at this point!
+				//The XML is now read and validated, you can discard it or anything else you wish
 			}
 			else{			
 				//Here goes the Code for Logging or similar Behaviour
