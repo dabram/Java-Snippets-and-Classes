@@ -100,7 +100,7 @@ public class XMLReader implements Runnable{
 	 * If the XML is valid {@link validate()} it starts parsing the XML 
 	 */
 	public void readXML(){
-		if(validate()){//if File is valid it can continue
+		if(validate()){
 			
 				SAXParser parser = null;
 				try {
@@ -297,17 +297,7 @@ public class XMLReader implements Runnable{
 		}
 		
 		if(rKWT){
-			
-			String allKeyWords = new String(ch, start, length);
-			
-			String[] keywordsAndRating = allKeyWords.split(supervisor.getCo_delimiterKeyWord());
-			
-			for(int i=0; i<keywordsAndRating.length;i++){
-				String[] actualWordAndRating = keywordsAndRating[i].split(supervisor.getCo_delimiterRating());
-				RatedKeyWord rkw = new RatedKeyWord(actualWordAndRating[0], Integer.valueOf(actualWordAndRating[1]));
-				website.getRatedKeyWords().add(rkw);
-			}
-			rKWT = false;
+			//Project Specific Parsing
 		}
 	}
 	
